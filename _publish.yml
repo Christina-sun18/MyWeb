@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 6779cd01-1290-4673-a642-32950468a4c1
+      url: 'https://yurusun.netlify.app'

@@ -1,0 +1,32 @@
+project:
+  type: website
+
+website:
+  navbar:
+    title: Yuru Sun
+    background: dark
+    search: true
+    right:
+      - href: index.qmd
+        text: Home
+      - href: talks.qmd
+        text: Presentations
+      - href: CV_web.qmd
+        text: CV
+      - href: blog.qmd
+        text: BLOG
+  back-to-top-navigation: true
+  page-footer: 
+    left: "Copyright 2025, Yuru Sun" 
+
+format:
+  html:
+    theme: sandstone
+    css: styles.css
+    toc: false
+    include-in-header:
+      - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+
+editor: visual
+
+

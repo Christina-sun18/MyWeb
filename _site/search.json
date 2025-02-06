@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "BLOG",
+    "section": "",
+    "text": "Disclaimer: On this website, I share my thoughts about Bayesian nonparametric analysis, financial econometrics, reading recommendations, etc. This cite is mainly used to facilitate my own understandings of the topics I discuss here.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nMy First Blog Post\n\n\n\n\n\n\n\n\n\n\n\nJan 12, 2025\n\n\nYuru Sun\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+  },
+  {
+    "objectID": "CV_web.html",
+    "href": "CV_web.html",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "Doctor of Philosophy, Monash University, Jan 2023 - present\nDoctor of Philosophy, University of Melbourne, June 2022 - Jan 2023\nBachelor of Commerce with Honors, Monash University, 2017-2020"
+  },
+  {
+    "objectID": "CV_web.html#education",
+    "href": "CV_web.html#education",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "Doctor of Philosophy, Monash University, Jan 2023 - present\nDoctor of Philosophy, University of Melbourne, June 2022 - Jan 2023\nBachelor of Commerce with Honors, Monash University, 2017-2020"
+  },
+  {
+    "objectID": "CV_web.html#research-projects",
+    "href": "CV_web.html#research-projects",
+    "title": "Curriculum Vitae",
+    "section": "Research Projects",
+    "text": "Research Projects\n\nJump modeling with Dirichlet process mixture (with Ole Maneesoonthorn, Yong Song, Wei Wei)\nOptimal probabilistic forecasts for risk management (with Ole Maneesoonthorn, Ruben Loaiza-Maya, Gael Martin)"
+  },
+  {
+    "objectID": "CV_web.html#work-experience",
+    "href": "CV_web.html#work-experience",
+    "title": "Curriculum Vitae",
+    "section": "Work Experience",
+    "text": "Work Experience\n\nTeaching Associate, Monash Business School, Feb 2023 - present\n\nHigh Dimensional Data Analysis (Head tutor)\nData Analysis in Business (Excellent teaching team)\nIntroductory Econometrics\n(Teaching evaluation reports available upon request)\n\nResearch Assistant, Monash Business School, Aug 2023 - Oct 2024\n\nData Analysis for the Thailand Bond Market Association. Evaluate bond price jumps under the influence of regulation changes.\n\nResearch Assistant, Monash Business School, Aug 2022 - Dec 2022\n\nData cleaning of high-frequency stock data"
+  },
+  {
+    "objectID": "CV_web.html#honors-awards",
+    "href": "CV_web.html#honors-awards",
+    "title": "Curriculum Vitae",
+    "section": "Honors & Awards",
+    "text": "Honors & Awards\n\nBest Poster Runner Up, Time Series and Forecasting Symposium, 2024\nCo-funded Monash Graduate Scholarship, Monash University, 2023\nMonash Business School Top-up Scholarship, Monash Business School, 2023\nFaculty of Business and Economics Graduate Research Scholarship, University of Melbourne, 2022\nDean’s Honor (First Class), Monash University, 2021,\nEconometrics Memorial Scholarship, Monash Business School, 2020\nMeritorious Winner, Interdisciplinary Contest in Modeling, 2020"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yuru (Christina) Sun",
+    "section": "",
+    "text": "I am a PhD student at Monash University. My research interests fall in financial econometrics, Bayesian statistics and time series forecasting. The project that I am working on involves state space models, Bayesian nonparametric methods and applications on the financial market.\nOn this website, I share my PhD journey, my research interests and a list of my presentations."
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Yuru (Christina) Sun",
+    "section": "",
+    "text": "I am a PhD student at Monash University. My research interests fall in financial econometrics, Bayesian statistics and time series forecasting. The project that I am working on involves state space models, Bayesian nonparametric methods and applications on the financial market.\nOn this website, I share my PhD journey, my research interests and a list of my presentations."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Yuru (Christina) Sun",
+    "section": "Education",
+    "text": "Education\n🎓 Doctor of Philosophy, Monash University\n🎓 Bachelor of Commerce (First Class Honors), Monash University"
+  },
+  {
+    "objectID": "index.html#current-research-project",
+    "href": "index.html#current-research-project",
+    "title": "Yuru (Christina) Sun",
+    "section": "Current Research Project",
+    "text": "Current Research Project\n📝 Jump Modeling with Dirichlet Process Mixture (with Ole Maneesoonthorn, Yong Song, Wei Wei)"
+  },
+  {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Presentations",
+    "section": "",
+    "text": "2024\n\nEconometric Society Australian Meetings (ESAM)\nRegular talk, Monash University, Melbourne, December 2024.\nSlides available at here\n\n\nTime Series and Forecasting Symposium\nPoster presentation, University of Sydney, Sydney, November 2024.\nRecipient of Best Poster Runner Up.\nPoster available at here\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "My journey in 2024\n\nTime Series Forecasting Symposium (2024) - Best Poster (Runner up)\nEconometrics Society Meeting (ESAM)\n\n\n\nEducation\n\nDoctoral program in Econometrics and Business Analytics (2023 - Expected 2025) at Monash University\nDoctoral program in Business Analysis (2022 - 2023) at Melbourne Business School\n\n\n\nWorking Project\n\nJump Modeling with Dirichlet Process Mixture (with Ole Maneethornsoon, Yong Song, Wei Wei)\n\n\n\nExperience\n\nUniversity Tutoring:\n\nHigh dimensional data analysis (head tutor)\nData analysis\nintroduction of econometrics\n\nResearch Assistant:\n\nThailand bond market jumps\nHigh frequency data analysis\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "myblog/Welcome.html",
+    "href": "myblog/Welcome.html",
+    "title": "My First Blog Post",
+    "section": "",
+    "text": "Welcome to my page!\n\n\n\n Back to top"
+  }
+]

@@ -1,0 +1,33 @@
+---
+title: "Yuru (Christina) Sun"
+image: profile/profile_photo2.png
+format: 
+  html: 
+    include-in-header: 
+      -  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css
+about: 
+  template: trestles
+  links:
+    - icon: linkedin 
+      href: https://linkedin.com/in/yuru-sun
+    - icon: google scholar
+      href: https://scholar.google.com/citations?user=bwOOxQIAAAAJ&hl=en
+    #- icon: github
+     # href: https://github.com/Christina-sun18
+---
+
+## About Me
+
+I am a PhD student at Monash University. My research interests fall in financial econometrics, Bayesian statistics and time series forecasting. The project that I am working on involves state space models, Bayesian nonparametric methods and applications on the financial market.
+
+On this website, I share my PhD journey, my research interests and a list of my presentations.
+
+## Education
+
+🎓 Doctor of Philosophy, Monash University
+
+🎓 Bachelor of Commerce (First Class Honors), Monash University
+
+## Current Research Project
+
+📝 **Jump Modeling with Dirichlet Process Mixture** (with [Ole Maneesoonthorn](https://sites.google.com/view/o-maneesoonthorn/home), [Yong Song](https://sites.google.com/view/ysong1), [Wei Wei](https://sites.google.com/site/wwei0936))

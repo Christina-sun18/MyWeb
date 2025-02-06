@@ -1,0 +1,15 @@
+{
+  "hash": "a91bc6f7e1607691d11a6e9c975cf219",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Talks\"\n---\n\n\n\nThis cite includes the talks that I present\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

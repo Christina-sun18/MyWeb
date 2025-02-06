@@ -1,0 +1,24 @@
+{
+  "index.qmd": {
+    "index.html": "cf511173"
+  },
+  "about.qmd": {
+    "about.html": "f88f624d"
+  },
+  "talks.qmd": {
+    "talks.html": "3f24dc87"
+  },
+  "Pre.qmd": {
+    "Pre.html": "64ea7853"
+  },
+  "CV_web.qmd": {
+    "CV_web.html": "f3b347ed",
+    "CV_web.pdf": "8c4716fb"
+  },
+  "blog.qmd": {
+    "blog.html": "8ff8bba0"
+  },
+  "myblog/Welcome.qmd": {
+    "Welcome.html": "6da3f296"
+  }
+}
