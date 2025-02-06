@@ -12,8 +12,8 @@ about:
       href: https://linkedin.com/in/yuru-sun
     - icon: google scholar
       href: https://scholar.google.com/citations?user=bwOOxQIAAAAJ&hl=en
-    #- icon: github
-     # href: https://github.com/Christina-sun18
+    - icon: github
+      href: https://github.com/Christina-sun18
 ---
 
 ## About Me
