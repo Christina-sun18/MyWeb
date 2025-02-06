@@ -5,6 +5,12 @@ format:
     toc: true
 ---
 
+::: {.d-block .d-sm-flex .align-items-center}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<a class="btn btn-primary btn-lg" href="resume.pdf" download role="button"> <i class="fas fa-download"></i> Download CV</a>
+:::
+
 ## Education
 
 -   Doctor of Philosophy, Monash University, Jan 2023 - present

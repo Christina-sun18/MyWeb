@@ -1,1 +1,25 @@
 /* css styles */
+<style>
+  .button-main {
+    display: inline-block;
+    background-color: #007bff;  /* Blue background */
+    color: yellow;               /* White text */
+    padding: 1em 2em;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, transform 0.3s;
+    border: 2px solid #007bff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .button-main:hover {
+    background-color: #007bff;  /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  .button-main:active {
+    transform: translateY(0);
+  }
+</style>
