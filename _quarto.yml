@@ -1,6 +1,7 @@
 project:
   type: website
-
+  
+  
 website:
   navbar:
     title: Yuru Sun
@@ -9,6 +10,8 @@ website:
     right:
       - href: index.qmd
         text: Home
+      - href: research.qmd
+        text: Research
       - href: talks.qmd
         text: Presentations
       - href: CV_web.qmd

@@ -25,6 +25,12 @@ format:
 
 -   [**Optimal probabilistic forecasts for risk management**](https://arxiv.org/abs/2303.01651) (with [Ole Maneesoonthorn](https://sites.google.com/view/o-maneesoonthorn/home), [Ruben Loaiza-Maya](https://sites.google.com/view/rubenloaizamaya), [Gael Martin](https://scholar.google.com/citations?user=Uq0_yNgAAAAJ&hl=en))
 
+## Talks
+
+-   Econometric Society Australasian Meeting (2024)
+
+-   Time Series and Forecasting Symposium (2024)
+
 ## Work Experience
 
 -   **Teaching Associate**, Monash Business School, Feb 2023 - present
@@ -34,6 +40,8 @@ format:
     -   Data Analysis in Business (Excellent teaching team)
 
     -   Introductory Econometrics
+
+    -   Business Statistics
 
         (*Teaching evaluation reports available upon request*)
 
