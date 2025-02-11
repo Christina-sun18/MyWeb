@@ -8,13 +8,4 @@ Jump modeling with Dirichlet process mixture (*supervised by Ole Maneesoonthorn,
 
 Abstract:
 
-We propose a Bayesian nonparametric method using Dirichlet process mixture to
-model jumps. This new model encompasses existing parametric jump specification, but allows for extreme jumps to occur in either tail of the return distribution via infinite mixture model. The flexibility in our model specification allows for multi-modal jump size distribution. We investigate the robustness of our proposed model under different jump intensity and size specifications under simulations and provide comparisons about the model-driven option implied volatility smiles. We verify the practical use of our model with empirical data in jump detection, data-driven jump size density and implied volatility smiles.
-
-				
-
-			
-
-		
-
-	
+We propose a Bayesian nonparametric method using Dirichlet process mixture to model jumps. This new model encompasses existing parametric jump specification, but allows for extreme jumps to occur in either tail of the return distribution via infinite mixture model. The flexibility in our model specification allows for multi-modal jump size distribution. We investigate the robustness of our proposed model under different jump intensity and size specifications under simulations and provide comparisons about the model-driven option implied volatility smiles. We verify the practical use of our model with empirical data in jump detection, data-driven jump size density and implied volatility smiles.
