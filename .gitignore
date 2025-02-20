@@ -52,3 +52,9 @@ rsconnect/
 # qarto website files
 /.quarto/
 /_site/
+
+# mac location files 
+*.DS_Store
+
+# mac Icon file
+Icon
