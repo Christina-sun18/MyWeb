@@ -57,4 +57,4 @@ rsconnect/
 *.DS_Store
 
 # mac Icon file
-Icon
+Icon?
