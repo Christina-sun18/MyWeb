@@ -16,8 +16,8 @@ website:
         text: Presentations
       - href: CV_web.qmd
         text: CV
-      - href: blog.qmd
-        text: BLOG
+      #- href: blog.qmd
+      #  text: BLOG
   back-to-top-navigation: true
   page-footer: 
     left: "Copyright 2025, Yuru Sun" 
