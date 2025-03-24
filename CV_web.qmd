@@ -43,11 +43,13 @@ format:
 
     -   Business Statistics
 
+    -   Business Forecasting
+
         (*Teaching evaluation reports available upon request*)
 
 -   **Research Assistant**, Monash Business School, Aug 2023 - Oct 2024
 
-    -   Data Analysis for the Thailand Bond Market Association. Evaluate bond price jumps under the influence of regulation changes.
+    -   High frequency data analysis of bond data for the Thailand Bond Market Association. Evaluate bond price jumps under the influence of regulation changes.
 
 -   **Research Assistant**, Monash Business School, Aug 2022 - Dec 2022
 
@@ -55,7 +57,7 @@ format:
 
 ## Honors & Awards
 
--   **Best Poster Runner Up**, Time Series and Forecasting Symposium, 2024
+-   **Best Poster Runner Up**, Time Series and Forecasting Symposium, Univeristy of Sydney, 2024
 
 -   **Co-funded Monash Graduate Scholarship**, Monash University, 2023
 

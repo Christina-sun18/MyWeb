@@ -13,7 +13,7 @@ website:
       - href: research.qmd
         text: Research
       - href: talks.qmd
-        text: Presentations
+        text: Talks
       - href: CV_web.qmd
         text: CV
       #- href: blog.qmd
