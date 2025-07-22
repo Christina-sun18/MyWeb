@@ -27,6 +27,8 @@ format:
 
 ## Talks
 
+-   International Association for Applied Econometrics (2025)
+
 -   Econometric Society Australasian Meeting (2024)
 
 -   Time Series and Forecasting Symposium (2024)
@@ -56,6 +58,10 @@ format:
     -   Data cleaning of high-frequency stock data
 
 ## Honors & Awards
+
+-   **Prestigious International Conference Award**, Monash University, 2025
+
+-   **CFM/SoFiE Scholarship**, Capital Fund Management, The Society for Financial Econometrics, 2025
 
 -   **Best Poster Runner Up**, Time Series and Forecasting Symposium, Univeristy of Sydney, 2024
 
