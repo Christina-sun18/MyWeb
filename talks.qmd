@@ -2,25 +2,43 @@
 title: "Conferences"
 ---
 
-# 2025 
+# 2025
 
-### International Association for Applied Econometrics (IAAE)
+### Econometrics Society World Congress (*ESWC*) 
 
-Regular presentation, University of Torino, Italy, June 2025
+Presented in Seoul, South Korea, August 2025
+
+Slides available at
+
+### The 8th International Conference on Econometrics and Statistics (*EcoSta*)
+
+Presented in Tokyo, Japan, August 2025
+
+Slides available at
+
+### The European Seminar on Bayesian Econometrics (*ESOBE*) 
+
+Poster presentation in Melbourne, Australia, August 2025
+
+Poster available at
+
+### International Association for Applied Econometrics (*IAAE*)
+
+Presented at University of Torino, Turin, Italy, June 2025
 
 Slides available at [link](https://www.dropbox.com/scl/fi/jkj18x222k2m5vsbm1r47/IAAEslides.pdf?rlkey=llimmlu0c676pyxubruw4r6dk&st=l3xhmory&dl=0)
 
 # 2024
 
-### Econometric Society Australian Meetings (ESAM)
+### Econometric Society Australian Meetings (*ESAM*)
 
-Regular talk, Monash University, Australia, December 2024
+Presented at Monash University, Melbourne, Australia, December 2024
 
 Slides available at [link](https://www.dropbox.com/scl/fi/htybc9u4mrunouf9uxx0f/ESAM_slide_final.pdf?rlkey=blemciaqpe78lyb8wc6patlpl&st=lmrzxq9n&dl=0)
 
 ### Time Series and Forecasting Symposium
 
-Poster presentation, University of Sydney, Australia, November 2024
+Poster presentation, University of Sydney, Sydney, Australia, November 2024
 
 Recipient of Best Poster Runner Up.
 
