@@ -27,6 +27,12 @@ format:
 
 ## Talks
 
+-   Econometrics Society World Congress (2025)
+
+-   The European Seminar on Bayesian Econometrics (2025)
+
+-   The 8th International Conference on Econometrics and Statistics (2025)
+
 -   International Association for Applied Econometrics (2025)
 
 -   Econometric Society Australasian Meeting (2024)
