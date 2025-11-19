@@ -21,7 +21,7 @@ format:
 
 ## Research Projects
 
--   **Jump modeling with Dirichlet process mixture** (with [Ole Maneesoonthorn](https://sites.google.com/view/o-maneesoonthorn/home), [Yong Song](https://sites.google.com/view/ysong1), [Wei Wei](https://sites.google.com/site/wwei0936))
+-   **Learning Financial Jumps with Infinite Gaussian Mixture** (with [Ole Maneesoonthorn](https://sites.google.com/view/o-maneesoonthorn/home), [Yong Song](https://sites.google.com/view/ysong1), [Wei Wei](https://sites.google.com/site/wwei0936))
 
 -   [**Optimal probabilistic forecasts for risk management**](https://arxiv.org/abs/2303.01651) (with [Ole Maneesoonthorn](https://sites.google.com/view/o-maneesoonthorn/home), [Ruben Loaiza-Maya](https://sites.google.com/view/rubenloaizamaya), [Gael Martin](https://scholar.google.com/citations?user=Uq0_yNgAAAAJ&hl=en))
 
