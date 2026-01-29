@@ -8,25 +8,25 @@ title: "Conferences"
 
 Presented in Seoul, South Korea, August 2025
 
-Slides available at [link](https://www.dropbox.com/scl/fi/awipmep82rabml3d6jctq/ESWCslides.pdf?rlkey=vuniwbiahibwhcfiwglyarzkv&st=n2a2o308&dl=0)
+[Slides available at link](Web_talks/ESWCslides.pdf)
 
 ### The 8th International Conference on Econometrics and Statistics (*EcoSta*)
 
 Presented in Tokyo, Japan, August 2025
 
-Slides available at [link](https://www.dropbox.com/scl/fi/w8jjpj7hhsxj8zc2m9ncp/EcoSta_slides.pdf?rlkey=af1e21dx09uas82j508n2rttb&st=om35ekup&dl=0)
+[Slides available at link](Web_talks/EcoSta_slides.pdf)
 
 ### The European Seminar on Bayesian Econometrics (*ESOBE*)
 
 Poster presentation in Melbourne, Australia, August 2025
 
-Poster available at [link](https://www.dropbox.com/scl/fi/dxso3dowp86nw2bk9e4k8/PosterESOBE.pdf?rlkey=83ivr5dihj36b8vey0pt9xhij&st=jx44isfy&dl=0)
+[Poster available at link](Web_talks/PosterESOBE.pdf)
 
 ### International Association for Applied Econometrics (*IAAE*)
 
 Presented at University of Torino, Turin, Italy, June 2025
 
-Slides available at [link](https://www.dropbox.com/scl/fi/jkj18x222k2m5vsbm1r47/IAAEslides.pdf?rlkey=llimmlu0c676pyxubruw4r6dk&st=l3xhmory&dl=0)
+[Slides available at link](Web_talks/IAAEslides.pdf)
 
 # 2024
 
@@ -34,7 +34,7 @@ Slides available at [link](https://www.dropbox.com/scl/fi/jkj18x222k2m5vsbm1r47/
 
 Presented at Monash University, Melbourne, Australia, December 2024
 
-Slides available at [link](https://www.dropbox.com/scl/fi/htybc9u4mrunouf9uxx0f/ESAM_slide_final.pdf?rlkey=blemciaqpe78lyb8wc6patlpl&st=lmrzxq9n&dl=0)
+[Slides available at link](Web_talks/ESAM_slide_final.pdf)
 
 ### Time Series and Forecasting Symposium
 
@@ -42,4 +42,4 @@ Poster presentation, University of Sydney, Sydney, Australia, November 2024
 
 Recipient of Best Poster Runner Up.
 
-Poster available at [link](https://www.dropbox.com/scl/fi/fnopt4h8iivr90zj19s1k/Poster_yuru.pdf?rlkey=sx5nochgve48m5laab2hcqihg&st=f4c2pv1q&dl=0)
+[Poster available at link](Web_talks/Poster_yuru.pdf)

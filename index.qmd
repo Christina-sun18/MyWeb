@@ -30,4 +30,4 @@ On this website, I share my PhD journey, my research interests and a list of my 
 
 ## Job Market Paper
 
-📝 [Learning Financial Jumps with Infinite Gaussian Mixture](https://www.dropbox.com/scl/fi/7rnksd5aseqs33t3mgbnb/YS_JobMarketPaper.pdf?rlkey=j15mycbk7u5f5swbi7irm6jd0&st=fg98s58e&dl=0)
+📝 [Learning Financial Jumps with Infinite Gaussian Mixture](Web_talks/YS_JobMarketPaper.pdf)

@@ -4,16 +4,8 @@ title: "Research"
 
 ## Job Market Paper
 
-[Learning Financial Jumps with Infinite Gaussian Mixture](https://www.dropbox.com/scl/fi/7rnksd5aseqs33t3mgbnb/YS_JobMarketPaper.pdf?rlkey=j15mycbk7u5f5swbi7irm6jd0&st=fg98s58e&dl=0)
+[Learning Financial Jumps with Infinite Gaussian Mixture](Web_talks/YS_JobMarketPaper.pdf)
 
 Abstract:
 
 We propose a Bayesian nonparametric method using Dirichlet process mixture to model jumps. This new model encompasses existing parametric jump specification, but allows for extreme jumps to occur in either tail of the return distribution via infinite mixture model. The flexibility in our model specification allows for multi-modal jump size distribution. We investigate the robustness of our proposed model under different jump intensity and size specifications under simulations and provide comparisons about the model-driven option implied volatility smiles. We verify the practical use of our model with empirical data in jump detection, data-driven jump size density and implied volatility smiles.
-
-				
-
-			
-
-		
-
-	
