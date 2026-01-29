@@ -53,8 +53,10 @@ rsconnect/
 /.quarto/
 /_site/
 
-# mac location files 
+# mac location files
 *.DS_Store
 
 # mac Icon file
 Icon?
+
+**/*.quarto_ipynb
