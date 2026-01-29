@@ -3,7 +3,9 @@ project:
   resources:
     - cv/
     - Web_talks/
-  
+    
+execute:
+  freeze: auto
   
 website:
   navbar:
