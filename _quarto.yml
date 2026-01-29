@@ -1,5 +1,8 @@
 project:
   type: website
+  resources:
+    - cv/
+    - Web_talks/
   
   
 website:
@@ -14,8 +17,11 @@ website:
         text: Research
       - href: talks.qmd
         text: Talks
-      - href: CV_web.qmd
-        text: CV
+      - text: CV
+        href: cv/resume.pdf
+        target: _blank
+      #- href: CV_web.qmd
+      #  text: CV
       #- href: blog.qmd
       #  text: BLOG
   back-to-top-navigation: true
