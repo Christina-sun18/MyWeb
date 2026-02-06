@@ -28,4 +28,4 @@ I am a PhD candidate at Monash University, Department of Econometrics and Busine
 
 ## Job Market Paper
 
-📝 [Learning Financial Jumps with Infinite Gaussian Mixture](Web_talks/YS_JobMarketPaper.pdf)
+📝 [Learning Financial Jumps with Infinite Gaussian Mixture](papers/YS_JobMarketPaper.pdf)
