@@ -4,8 +4,22 @@ title: "Research"
 
 ## Job Market Paper
 
-[Learning Financial Jumps with Infinite Gaussian Mixture](Web_talks/YS_JobMarketPaper.pdf)
+[Learning Financial Jumps with Infinite Gaussian Mixture](papers/YS_JobMarketPaper.pdf)
 
 Abstract:
 
 We propose a Bayesian nonparametric method using Dirichlet process mixture to model jumps. This new model encompasses existing parametric jump specification, but allows for extreme jumps to occur in either tail of the return distribution via infinite mixture model. The flexibility in our model specification allows for multi-modal jump size distribution. We investigate the robustness of our proposed model under different jump intensity and size specifications under simulations and provide comparisons about the model-driven option implied volatility smiles. We verify the practical use of our model with empirical data in jump detection, data-driven jump size density and implied volatility smiles.
+
+## Working in Progress
+
+Downside and Upside Systematic Risk Measures Implied by Option Information
+
+Abstract:
+
+An innovative method of constructing the option implied downside and upside betas for systematic risk measures through option implied truncated moments.
+
+[Optimal Probabilistic Forecasts for Risk Management](papers/OptimalRisk.pdf)
+
+Abstract:
+
+This paper explores the implications of producing forecast distributions that are optimized according to scoring rules that are relevant to financial risk management. We assess the predictive performance of optimal forecasts from potentially misspecified models for i) value-at-risk and expected shortfall predictions; and ii) prediction of the VIX volatility index for use in hedging strategies involving VIX futures. Our empirical results show that calibrating the predictive distribution using a score that rewards the accurate prediction of extreme returns improves the VaR and ES predictions. Tail-focused predictive distributions are also shown to yield better outcomes in hedging strategies using VIX futures.
