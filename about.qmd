@@ -4,32 +4,32 @@ title: "About Me"
 
 ### My journey in 2024
 
--   Time Series Forecasting Symposium (2024) - Best Poster (Runner up)
+- Time Series Forecasting Symposium (2024) - Best Poster (Runner up)
 
--   Econometrics Society Meeting (ESAM)
+- Econometrics Society Meeting (ESAM)
 
 ### Education
 
--   Doctoral program in Econometrics and Business Analytics (2023 - Expected 2025) at Monash University
+- Doctoral program in Econometrics and Business Analytics (2023 - Expected 2025) at Monash University
 
--   Doctoral program in Business Analysis (2022 - 2023) at Melbourne Business School
+- Doctoral program in Business Analysis (2022 - 2023) at Melbourne Business School
 
 ### Working Project
 
--   Jump Modeling with Dirichlet Process Mixture (with Ole Maneethornsoon, Yong Song, Wei Wei)
+- Jump Modeling with Dirichlet Process Mixture (with Ole Maneethornsoon, Yong Song, Wei Wei)
 
 ### Experience
 
--   **University Tutoring**:
+- **University Tutoring**:
 
-    -   High dimensional data analysis (head tutor)
+  - High dimensional data analysis (head tutor)
 
-    -   Data analysis
+  - Data analysis
 
-    -   introduction of econometrics
+  - introduction of econometrics
 
--   **Research Assistant**:
+- **Research Assistant**:
 
-    -   Thailand bond market jumps
+  - Thailand bond market jumps
 
-    -   High frequency data analysis
+  - High frequency data analysis

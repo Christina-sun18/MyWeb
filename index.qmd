@@ -18,7 +18,7 @@ about:
 
 ## About Me
 
-I am a PhD candidate at Monash University, Department of Econometrics and Business Statistics. My research interests fall in financial econometrics, Bayesian statistics, time series forecasting and empirical finance. The project that I am working on involves state space models, Bayesian nonparametric methods and applications on the financial market. I'm currently on the 2025/26 job market.
+I am a PhD graduate at Monash University, Department of Econometrics and Business Statistics. My research interests fall in financial econometrics, Bayesian statistics, time series forecasting and empirical finance. The project that I am working on involves state space models, Bayesian nonparametric methods and applications on the financial market. I'm currently on the job market.
 
 ## Education
 
