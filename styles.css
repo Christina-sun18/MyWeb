@@ -22,4 +22,22 @@
   .button-main:active {
     transform: translateY(0);
   }
+  
+  div.shinylive-wrapper {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  }
+  
+  .shinylive-container {
+    background-color: transparent;
+  }
+  
+  iframe.app-frame {
+    width: 100%;
+    border: none;
+  }
 </style>

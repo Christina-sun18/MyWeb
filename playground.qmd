@@ -13,7 +13,7 @@ filters:
 
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 800
+#| viewerHeight: 1600
 ## file: Gamma_dist.R
 gamma_ui <- function(id) {
   ns <- NS(id)
