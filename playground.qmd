@@ -14,6 +14,7 @@ filters:
 ```{shinylive-r}
 #| standalone: true
 #| viewerHeight: 1600
+#| viewerWidth: 1200
 ## file: Gamma_dist.R
 gamma_ui <- function(id) {
   ns <- NS(id)
@@ -59,7 +60,7 @@ gamma_ui <- function(id) {
       # plot on the right 
       column(
         width = 8, 
-        plotOutput(ns("gamma_plot"), height = "400px")
+        plotOutput(ns("gamma_plot"), height = "400px", width = "600px")
       )
     )
   )
@@ -127,6 +128,8 @@ gamma_server <- function(id) {
       on.exit(par(old_par))
       
       # make a histogram 
+      par(font.main = 1) #fix plot title issue on netlify
+      
       hist(
         sim$draws,
         breaks = 30,
@@ -200,7 +203,7 @@ beta_ui <- function(id) {
       
       # plot on the right 
       column(width = 8, 
-        plotOutput(ns("beta_plot"))
+        plotOutput(ns("beta_plot"), height = "400px", width = "600px")
       )
     )
   )
@@ -228,6 +231,8 @@ beta_server <- function(id) {
     
     output$beta_plot <- renderPlot({
       sim <- simulation()
+      
+      par(font.main = 1)
       
       hist(
         sim$draws,
@@ -295,7 +300,7 @@ dirichlet_ui <- function(id) {
     ),
     
     column(width = 8,
-      plotOutput(ns("weights_plot"))
+      plotOutput(ns("weights_plot"), height = "400px", width = "600px")
     )
   )
 )
@@ -319,6 +324,8 @@ dirichlet_server <- function(id) {
       ignoreNULL = FALSE
     )
     
+    par(font.main = 1)
+    
     output$weights_plot <- renderPlot({
       barplot(
         weights(),
@@ -327,8 +334,8 @@ dirichlet_server <- function(id) {
         col = "#4472C4",
         border = NA,
         xlab = "Component",
-        ylab = "Weight",
-        main = paste("Alpha =", input$alpha)
+        ylab = "Weight"
+       # main = paste("Alpha =", input$alpha)
       )
       
       abline(
