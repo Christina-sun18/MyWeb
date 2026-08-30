@@ -26,6 +26,8 @@ website:
       #  text: CV
       #- href: blog.qmd
       #  text: BLOG
+      - href: playground.qmd
+        text: Playground 
   back-to-top-navigation: true
   page-footer: 
     left: "Copyright 2025, Yuru Sun" 
@@ -36,7 +38,9 @@ format:
     css: styles.css
     toc: false
     include-in-header:
-      - "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      text: |
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     #- "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 
 editor: visual
 
