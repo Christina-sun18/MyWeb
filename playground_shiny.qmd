@@ -1,0 +1,388 @@
+---
+title: "Playground"
+author: "Yuru Sun"
+format: 
+  html: 
+    embed-resources: false
+engine: knitr
+filters:
+  - shinylive
+---
+
+## Simulation and visualization of different distributions
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 1600
+#| viewerWidth: 1200
+## file: Gamma_dist.R
+gamma_ui <- function(id) {
+  ns <- NS(id)
+  
+  #layout_sidebar(
+  div(
+    style = "margin-bottom: 80px;",
+    
+    fluidRow(
+      # control on the left 
+      column(
+        width = 4,
+        
+        # add scale/rate choices
+        radioButtons(
+          ns("parameterization"),
+          "Parameterization",
+          choices = c(
+            "Shape, Scale" = "scale",
+            "Shape, Rate" = "rate"
+          ),
+          selected = "scale"
+        ),
+        
+        sliderInput(
+          ns("shape"), "Shape",
+          min = 0.1, max = 20,
+          value = 1, step = 0.1
+        ),
+        
+        sliderInput(
+          ns("second"), "Scale", # internally named as second
+          min = 0.1, max = 10,
+          value = 3, step = 0.1
+        ),
+        
+        actionButton(
+          ns("simulate"),
+          "Generate new draw"
+        )
+      ),
+      
+      # plot on the right 
+      column(
+        width = 8, 
+        plotOutput(ns("gamma_plot"), height = "400px", width = "600px")
+      )
+    )
+  )
+}
+
+
+gamma_server <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    
+    # add an obs event for the param choices 
+    observeEvent(input$parameterization,{
+      req(input$second) 
+      
+      updateSliderInput(
+        session, 
+        "second",
+        label = if(input$parameterization == "scale"){
+          "Scale"
+        } else{
+          "Rate"
+        },
+        value = 1/input$second
+      )
+    }, ignoreInit = TRUE)
+    
+    # save the samples and param together 
+    simulation <- eventReactive(
+      input$simulate,{
+        req(input$shape, input$second)
+        shape = input$shape
+        
+        # use scale internally, regardless the selected option
+        scale = if(input$parameterization == "scale"){
+          input$second
+        } else{
+          1/input$second
+        }
+        
+        list(
+          shape = shape, 
+          scale = scale, 
+          choice = input$parameterization, 
+          second = input$second, 
+          draws = rgamma(1000, shape = shape, scale = scale)
+        )
+      }, ignoreNULL = FALSE)
+    
+    output$gamma_plot <- renderPlot({
+      sim <- simulation()
+      
+      # Use a common horizontal range for both plots
+      xmax <- max(
+        sim$draws,
+        qgamma(0.995, shape = sim$shape, scale = sim$scale)
+      )
+      
+      # Avoid evaluating the PDF at zero when shape < 1
+      x <- seq(xmax / 10000, xmax, length.out = 2000)
+      
+      # set plot layout
+      old_par <- par(
+        mfrow = c(2, 1),
+        mar = c(4, 4, 3, 1)
+      )
+      on.exit(par(old_par))
+      
+      # make a histogram 
+      par(font.main = 1) #fix plot title issue on netlify
+      
+      hist(
+        sim$draws,
+        breaks = 30,
+        probability = TRUE,
+        col = "#BCD4E6",
+        border = "white",
+        xlab = "x",
+        ylab = "Density",
+        main = paste(
+          "Gamma: shape =", sim$shape,
+          ", scale =", sim$scale
+        )
+      )
+      
+      lines(
+        x,
+        dgamma(x, shape = sim$shape, scale = sim$scale),
+        col = "#C0392B",
+        lwd = 2
+      )
+      
+      # 2. Theoretical cumulative distribution function
+      x_cdf <- c(0, x)
+      
+      plot(
+        x_cdf,
+        pgamma(x_cdf, shape = sim$shape, scale = sim$scale),
+        type = "l",
+        col = "#4472C4",
+        lwd = 2,
+        xlim = c(0, xmax),
+        ylim = c(0, 1),
+        xlab = "x",
+        ylab = "P(X ≤ x)",
+        main = "Cumulative distribution function"
+      )
+    })
+  })
+}
+## file: beta_dist.R
+# simulate and visualise beta distribution 
+
+beta_ui <- function(id) {
+  ns <- NS(id)
+  
+  div(
+    style = "margin-bottom: 80px;",
+    
+    fluidRow(
+      # control on the left 
+      column(
+        width = 4,
+        
+          sliderInput(
+            ns("alpha"), "alpha",
+            min = 0.1, max = 20,
+            value = 1, step = 0.1
+          ),
+          
+          sliderInput(
+            ns("beta"), "beta",
+            min = 0.1, max = 10,
+            value = 3, step = 0.1
+          ),
+          
+          actionButton(
+            ns("simulate"),
+            "Generate new draw"
+          )
+      ),
+      
+      # plot on the right 
+      column(width = 8, 
+        plotOutput(ns("beta_plot"), height = "400px", width = "600px")
+      )
+    )
+  )
+}
+
+
+beta_server <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    
+    simulation <- eventReactive(
+      input$simulate,
+      {
+        # Store the parameters alongside their generated sample
+        alpha <- input$alpha
+        beta <- input$beta
+        
+        list(
+          draws = rbeta(500, alpha, beta),
+          alpha = alpha,
+          beta = beta
+        )
+      },
+      ignoreNULL = FALSE
+    )
+    
+    output$beta_plot <- renderPlot({
+      sim <- simulation()
+      
+      par(font.main = 1)
+      
+      hist(
+        sim$draws,
+        breaks = 30,
+        probability = TRUE,
+        col = "#BCD4E6",
+        border = "white",
+        xlab = "x",
+        ylab = "Density",
+        main = paste(
+          "Beta: Alpha =", sim$alpha,
+          ", Beta =", sim$beta
+        )
+      )
+      
+      # Start above zero: the density diverges at zero if shape < 1
+      x <- seq(
+        max(sim$draws) * 1e-6,
+        max(sim$draws),
+        length.out = 1000
+      )
+      
+      lines(
+        x,
+        dbeta(x, sim$alpha, sim$beta),
+        col = "#C0392B",
+        lwd = 2
+      )
+    })
+  })
+}
+## file: dirichlet_distribution.R
+# simulate and visualise Dirichlet distribution 
+
+dirichlet_ui <- function(id) {
+  ns <- NS(id)
+  
+  div(
+    style = "margin-bottom: 80px;",
+    
+    fluidRow(
+      # control on the left 
+      column(width = 4,
+          sliderInput(
+            ns("alpha"),
+            "Concentration parameter",
+            min = 0.01,
+            max = 20,
+            value = 1,
+            step = 0.01
+          ),
+      
+          sliderInput(
+            ns("n_components"),
+            "Number of components",
+            min = 2,
+            max = 10,
+            value = 3
+          ),
+      
+          actionButton(
+            ns("simulate"),
+            "Generate new draw"
+          )
+    ),
+    
+    column(width = 8,
+      plotOutput(ns("weights_plot"), height = "400px", width = "600px")
+    )
+  )
+)
+}
+
+
+dirichlet_server <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    
+    weights <- eventReactive(
+      input$simulate,
+      {
+        gamma_draws <- rgamma(
+          n = input$n_components,
+          shape = input$alpha,
+          rate = 1
+        )
+        
+        gamma_draws / sum(gamma_draws)
+      },
+      ignoreNULL = FALSE
+    )
+    
+    par(font.main = 1)
+    
+    output$weights_plot <- renderPlot({
+      barplot(
+        weights(),
+        names.arg = paste0("Component ", seq_along(weights())),
+        ylim = c(0, 1),
+        col = "#4472C4",
+        border = NA,
+        xlab = "Component",
+        ylab = "Weight"
+       # main = paste("Alpha =", input$alpha)
+      )
+      
+      abline(
+        h = 1 / input$n_components,
+        col = "red",
+        lty = 2
+      )
+    })
+  })
+}
+## file: app.R
+webr::install(c("ggplot2", "munsell", "scales", "colorspace", "bslib"))
+
+library(shiny)
+library(bslib)
+library(ggplot2)
+
+# call files for each topic 
+source("Gamma_dist.R")
+source("beta_dist.R")
+source("dirichlet_distribution.R")
+
+ui = page_fluid(
+    h2("Distribution Playground"),
+    
+    h3("Gamma distribution"),
+    gamma_ui("gamma"),
+    
+    hr(),
+    
+    h3("Beta distribution"),
+    beta_ui("beta"),
+    
+    hr(),
+    
+    h3("Dirichlet distribution"),
+    dirichlet_ui("dirichlet"), 
+  theme = bs_theme(
+    preset = "flatly"
+  )
+)
+
+server <- function(input, output, session) {
+  gamma_server("gamma")
+  dirichlet_server("dirichlet")
+  beta_server("beta")
+}
+
+shinyApp(ui, server)
+```
