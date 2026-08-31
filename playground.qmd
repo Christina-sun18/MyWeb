@@ -25,10 +25,8 @@ function gammaFn(z) {
   return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
 }
 
-function gammaPDF(x, shape, scale) {
-  if (x <= 0) return 0;
-  return Math.pow(x, shape - 1) * Math.exp(-x / scale) /
-    (gammaFn(shape) * Math.pow(scale, shape));
+function gammaLn(z) {
+  return Math.log(gammaFn(z));
 }
 
 function randomNormal() {
@@ -38,6 +36,7 @@ function randomNormal() {
   return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
 }
 
+// Marsaglia-Tsang: replaces R's rgamma()
 function sampleGamma(shape, scale) {
   if (shape < 1) {
     const u = Math.random();
@@ -57,38 +56,125 @@ function sampleGamma(shape, scale) {
     if (Math.log(u) < 0.5 * x * x + d * (1 - v + Math.log(v))) return d * v * scale;
   }
 }
-```
 
-```{ojs}
-//| echo: false
-viewof shape = Inputs.range([0.1, 20], {value: 2, step: 0.1, label: "Shape"})
-```
+function gammaPDF(x, shape, scale) {
+  if (x <= 0) return 0;
+  return Math.pow(x, shape - 1) * Math.exp(-x / scale) /
+    (gammaFn(shape) * Math.pow(scale, shape));
+}
 
-```{ojs}
-//| echo: false
-viewof scale = Inputs.range([0.1, 10], {value: 2, step: 0.1, label: "Scale"})
-```
+// Regularized lower incomplete gamma function, P(a, x) — replaces R's pgamma()
+function lowerIncompleteGammaRegularized(a, x) {
+  if (x <= 0 || a <= 0) return 0;
+  if (x < a + 1) {
+    // series representation
+    let sum = 1 / a;
+    let term = sum;
+    let n = a;
+    for (let i = 0; i < 200; i++) {
+      n += 1;
+      term *= x / n;
+      sum += term;
+      if (Math.abs(term) < Math.abs(sum) * 1e-12) break;
+    }
+    return sum * Math.exp(-x + a * Math.log(x) - gammaLn(a));
+  } else {
+    // continued fraction representation for Q(a,x) = 1 - P(a,x)
+    let b = x + 1 - a;
+    let c = 1e30;
+    let d = 1 / b;
+    let h = d;
+    for (let i = 1; i <= 200; i++) {
+      const an = -i * (i - a);
+      b += 2;
+      d = an * d + b;
+      if (Math.abs(d) < 1e-30) d = 1e-30;
+      c = b + an / c;
+      if (Math.abs(c) < 1e-30) c = 1e-30;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 1e-12) break;
+    }
+    const Q = Math.exp(-x + a * Math.log(x) - gammaLn(a)) * h;
+    return 1 - Q;
+  }
+}
 
-```{ojs}
-//| echo: false
-viewof resample = Inputs.button("Generate new draw")
-```
+function gammaCDF(x, shape, scale) {
+  if (x <= 0) return 0;
+  return lowerIncompleteGammaRegularized(shape, x / scale);
+}
 
-```{ojs}
-//| echo: false
-draws = {
-  resample;
-  return Array.from({length: 1000}, () => sampleGamma(shape, scale));
+// Beta sampling via two gamma draws: replaces R's rbeta()
+function sampleBeta(a, b) {
+  const x = sampleGamma(a, 1);
+  const y = sampleGamma(b, 1);
+  return x / (x + y);
+}
+
+function betaPDF(x, a, b) {
+  if (x <= 0 || x >= 1) return 0;
+  const logB = gammaLn(a) + gammaLn(b) - gammaLn(a + b);
+  return Math.exp((a - 1) * Math.log(x) + (b - 1) * Math.log(1 - x) - logB);
 }
 ```
 
 ```{ojs}
 //| echo: false
-histogram = {
-  const xmax = d3.max(draws) * 1.05;
-  const bin = d3.bin().domain([0, xmax]).thresholds(30);
-  const bins = bin(draws);
-  const n = draws.length;
+viewof parameterization = Inputs.radio(
+  ["scale", "rate"],
+  {value: "scale", label: "Parameterization",
+   format: d => d === "scale" ? "Shape, Scale" : "Shape, Rate"}
+)
+```
+
+```{ojs}
+//| echo: false
+viewof shape = Inputs.range([0.1, 20], {value: 1, step: 0.1, label: "Shape"})
+```
+
+```{ojs}
+//| echo: false
+viewof second = Inputs.range(
+  [0.1, 10],
+  {value: 3, step: 0.1, label: parameterization === "scale" ? "Scale" : "Rate"}
+)
+```
+
+```{ojs}
+//| echo: false
+viewof resampleGamma = Inputs.button("Generate new draw")
+```
+
+```{ojs}
+//| echo: false
+gammaScaleValue = parameterization === "scale" ? second : 1 / second
+```
+
+```{ojs}
+//| echo: false
+gammaSim = {
+  resampleGamma;
+  return {
+    shape,
+    scale: gammaScaleValue,
+    draws: Array.from({length: 1000}, () => sampleGamma(shape, gammaScaleValue))
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+gammaXmax = Math.max(d3.max(gammaSim.draws) * 1.05, gammaSim.shape * gammaSim.scale * 3)
+```
+
+```{ojs}
+//| echo: false
+gammaHistogram = {
+  const bin = d3.bin().domain([0, gammaXmax]).thresholds(30);
+  const bins = bin(gammaSim.draws);
+  const n = gammaSim.draws.length;
   return bins.map(b => ({
     x1: b.x0,
     x2: b.x1,
@@ -99,10 +185,17 @@ histogram = {
 
 ```{ojs}
 //| echo: false
-pdfPoints = {
-  const xmax = d3.max(draws) * 1.05;
-  const xs = d3.range(0, xmax, xmax / 300);
-  return xs.map(x => ({x, y: gammaPDF(x, shape, scale)}));
+gammaPdfPoints = {
+  const xs = d3.range(gammaXmax / 10000, gammaXmax, gammaXmax / 300);
+  return xs.map(x => ({x, y: gammaPDF(x, gammaSim.shape, gammaSim.scale)}));
+}
+```
+
+```{ojs}
+//| echo: false
+gammaCdfPoints = {
+  const xs = d3.range(0, gammaXmax, gammaXmax / 300);
+  return xs.map(x => ({x, y: gammaCDF(x, gammaSim.shape, gammaSim.scale)}));
 }
 ```
 
@@ -112,14 +205,307 @@ import {Plot} from "@observablehq/plot"
 
 Plot.plot({
   width: 640,
-  height: 360,
+  height: 320,
   marginLeft: 50,
-  title: `Gamma: shape = ${shape}, scale = ${scale}`,
-  x: {label: "x"},
+  title: `Gamma: shape = ${gammaSim.shape.toFixed(2)}, scale = ${gammaSim.scale.toFixed(2)}`,
+  x: {label: "x", domain: [0, gammaXmax]},
   y: {label: "Density"},
   marks: [
-    Plot.rect(histogram, {x1: "x1", x2: "x2", y1: 0, y2: "density", fill: "#BCD4E6"}),
-    Plot.line(pdfPoints, {x: "x", y: "y", stroke: "#C0392B", strokeWidth: 2})
+    Plot.rect(gammaHistogram, {x1: "x1", x2: "x2", y1: 0, y2: "density", fill: "#BCD4E6"}),
+    Plot.line(gammaPdfPoints, {x: "x", y: "y", stroke: "#C0392B", strokeWidth: 2})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 640,
+  height: 280,
+  marginLeft: 50,
+  title: "Cumulative distribution function",
+  x: {label: "x", domain: [0, gammaXmax]},
+  y: {label: "P(X ≤ x)", domain: [0, 1]},
+  marks: [
+    Plot.line(gammaCdfPoints, {x: "x", y: "y", stroke: "#4472C4", strokeWidth: 2})
+  ]
+})
+```
+
+### Beta distribution
+
+```{ojs}
+//| echo: false
+viewof betaAlpha = Inputs.range([0.1, 20], {value: 1, step: 0.1, label: "alpha"})
+```
+
+```{ojs}
+//| echo: false
+viewof betaBeta = Inputs.range([0.1, 10], {value: 3, step: 0.1, label: "beta"})
+```
+
+```{ojs}
+//| echo: false
+viewof resampleBeta = Inputs.button("Generate new draw")
+```
+
+```{ojs}
+//| echo: false
+betaSim = {
+  resampleBeta;
+  return {
+    alpha: betaAlpha,
+    beta: betaBeta,
+    draws: Array.from({length: 500}, () => sampleBeta(betaAlpha, betaBeta))
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+betaHistogram = {
+  const bin = d3.bin().domain([0, 1]).thresholds(30);
+  const bins = bin(betaSim.draws);
+  const n = betaSim.draws.length;
+  return bins.map(b => ({
+    x1: b.x0,
+    x2: b.x1,
+    density: b.length / (n * (b.x1 - b.x0))
+  }));
+}
+```
+
+```{ojs}
+//| echo: false
+betaPdfPoints = {
+  const xs = d3.range(1e-4, 1 - 1e-4, 1 / 300);
+  return xs.map(x => ({x, y: betaPDF(x, betaSim.alpha, betaSim.beta)}));
+}
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 640,
+  height: 360,
+  marginLeft: 50,
+  title: `Beta: Alpha = ${betaSim.alpha.toFixed(2)}, Beta = ${betaSim.beta.toFixed(2)}`,
+  x: {label: "x", domain: [0, 1]},
+  y: {label: "Density"},
+  marks: [
+    Plot.rect(betaHistogram, {x1: "x1", x2: "x2", y1: 0, y2: "density", fill: "#BCD4E6"}),
+    Plot.line(betaPdfPoints, {x: "x", y: "y", stroke: "#C0392B", strokeWidth: 2})
+  ]
+})
+```
+
+### Dirichlet distribution
+
+```{ojs}
+//| echo: false
+viewof alpha = Inputs.range([0.01, 20], {value: 1, step: 0.01, label: "Concentration parameter"})
+```
+
+```{ojs}
+//| echo: false
+viewof nComponents = Inputs.range([2, 10], {value: 3, step: 1, label: "Number of components"})
+```
+
+```{ojs}
+//| echo: false
+viewof resampleDirichlet = Inputs.button("Generate new draw")
+```
+
+```{ojs}
+//| echo: false
+dirichletWeights = {
+  resampleDirichlet;
+  const draws = Array.from({length: nComponents}, () => sampleGamma(alpha, 1));
+  const total = d3.sum(draws);
+  return draws.map((g, i) => ({component: `Component ${i + 1}`, weight: g / total}));
+}
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 640,
+  height: 360,
+  marginLeft: 50,
+  title: `Alpha = ${alpha.toFixed(2)}`,
+  x: {label: "Component"},
+  y: {label: "Weight", domain: [0, 1]},
+  marks: [
+    Plot.barY(dirichletWeights, {x: "component", y: "weight", fill: "#4472C4"}),
+    Plot.ruleY([1 / nComponents], {stroke: "red", strokeDasharray: "4,2"})
+  ]
+})
+```
+
+### Dirichlet probability density (3 components)
+
+
+```{ojs}
+//| echo: false
+viewof alphaTernary = Inputs.range([0.1, 20], {value: 1, step: 0.1, label: "Concentration parameter"})
+```
+
+```{ojs}
+//| echo: false
+// Equilateral triangle vertices: v1 = p1=1, v2 = p2=1, v3 = p3=1
+simplexVertices = ({
+  v1: [0, 0],
+  v2: [1, 0],
+  v3: [0.5, Math.sqrt(3) / 2]
+})
+```
+
+```{ojs}
+//| echo: false
+function cartesianToBarycentric(x, y) {
+  const {v1, v2, v3} = simplexVertices;
+  const denom = (v2[1] - v3[1]) * (v1[0] - v3[0]) + (v3[0] - v2[0]) * (v1[1] - v3[1]);
+  const p1 = ((v2[1] - v3[1]) * (x - v3[0]) + (v3[0] - v2[0]) * (y - v3[1])) / denom;
+  const p2 = ((v3[1] - v1[1]) * (x - v3[0]) + (v1[0] - v3[0]) * (y - v3[1])) / denom;
+  const p3 = 1 - p1 - p2;
+  return [p1, p2, p3];
+}
+
+function dirichletDensitySymmetric(p1, p2, p3, a) {
+  if (p1 <= 0 || p2 <= 0 || p3 <= 0) return NaN;
+  const logB = 3 * gammaLn(a) - gammaLn(3 * a);
+  const logDensity = (a - 1) * (Math.log(p1) + Math.log(p2) + Math.log(p3)) - logB;
+  return Math.exp(logDensity);
+}
+
+function dirichletDensityGeneral(p1, p2, p3, a1, a2, a3) {
+  if (p1 <= 0 || p2 <= 0 || p3 <= 0) return NaN;
+  const logB = gammaLn(a1) + gammaLn(a2) + gammaLn(a3) - gammaLn(a1 + a2 + a3);
+  const logDensity = (a1 - 1) * Math.log(p1) + (a2 - 1) * Math.log(p2) + (a3 - 1) * Math.log(p3) - logB;
+  return Math.exp(logDensity);
+}
+```
+
+```{ojs}
+//| echo: false
+// Gridlines of constant p1/p2/p3 at 0.2, 0.4, 0.6, 0.8 — the classic ternary-plot grid
+function barycentricToCartesian(p1, p2, p3) {
+  const {v1, v2, v3} = simplexVertices;
+  return [
+    p1 * v1[0] + p2 * v2[0] + p3 * v3[0],
+    p1 * v1[1] + p2 * v2[1] + p3 * v3[1]
+  ];
+}
+
+ternaryGridlines = {
+  const levels = [0.2, 0.4, 0.6, 0.8];
+  const lines = [];
+  for (const k of levels) {
+    // constant p1 = k
+    lines.push({
+      group: `p1-${k}`,
+      points: [barycentricToCartesian(k, 0, 1 - k), barycentricToCartesian(k, 1 - k, 0)]
+    });
+    // constant p2 = k
+    lines.push({
+      group: `p2-${k}`,
+      points: [barycentricToCartesian(0, k, 1 - k), barycentricToCartesian(1 - k, k, 0)]
+    });
+    // constant p3 = k
+    lines.push({
+      group: `p3-${k}`,
+      points: [barycentricToCartesian(0, 1 - k, k), barycentricToCartesian(1 - k, 0, k)]
+    });
+  }
+  return lines.flatMap(l => l.points.map(p => ({group: l.group, x: p[0], y: p[1]})));
+}
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 480,
+  height: 440,
+  marginLeft: 10,
+  marginRight: 10,
+  title: "Probability density function",
+  x: {axis: null, domain: [-0.05, 1.05]},
+  y: {axis: null, domain: [-0.05, Math.sqrt(3) / 2 + 0.05]},
+  color: {scheme: "blues", label: "Density", legend: true},
+  marks: [
+    Plot.contour({
+      x1: 0, x2: 1, y1: 0, y2: Math.sqrt(3) / 2,
+      thresholds: 10,
+      fill: (x, y) => {
+        const [p1, p2, p3] = cartesianToBarycentric(x, y);
+        return dirichletDensitySymmetric(p1, p2, p3, alphaTernary);
+      }
+    }),
+    Plot.line(ternaryGridlines, {x: "x", y: "y", z: "group", stroke: "white", strokeWidth: 0.6, strokeOpacity: 0.6}),
+    Plot.line([
+      simplexVertices.v1, simplexVertices.v2, simplexVertices.v3, simplexVertices.v1
+    ], {stroke: "black", strokeWidth: 1.5}),
+    Plot.text(
+      [
+        {x: -0.03, y: -0.03, text: "p1"},
+        {x: 1.03, y: -0.03, text: "p2"},
+        {x: 0.5, y: Math.sqrt(3) / 2 + 0.05, text: "p3"}
+      ],
+      {x: "x", y: "y", text: "text", fontSize: 14}
+    )
+  ]
+})
+```
+
+### Dirichlet density — independent alpha per component
+
+```{ojs}
+//| echo: false
+viewof alpha1 = Inputs.range([0.1, 20], {value: 1, step: 0.1, label: "alpha (p1)"})
+```
+
+```{ojs}
+//| echo: false
+viewof alpha2 = Inputs.range([0.1, 20], {value: 1, step: 0.1, label: "alpha (p2)"})
+```
+
+```{ojs}
+//| echo: false
+viewof alpha3 = Inputs.range([0.1, 20], {value: 1, step: 0.1, label: "alpha (p3)"})
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 480,
+  height: 440,
+  marginLeft: 10,
+  marginRight: 10,
+  title: `Alpha = (${alpha1.toFixed(1)}, ${alpha2.toFixed(1)}, ${alpha3.toFixed(1)})`,
+  x: {axis: null, domain: [-0.05, 1.05]},
+  y: {axis: null, domain: [-0.05, Math.sqrt(3) / 2 + 0.05]},
+  color: {scheme: "blues", label: "Density", legend: true},
+  marks: [
+    Plot.contour({
+      x1: 0, x2: 1, y1: 0, y2: Math.sqrt(3) / 2,
+      thresholds: 10,
+      fill: (x, y) => {
+        const [p1, p2, p3] = cartesianToBarycentric(x, y);
+        return dirichletDensityGeneral(p1, p2, p3, alpha1, alpha2, alpha3);
+      }
+    }),
+    Plot.line(ternaryGridlines, {x: "x", y: "y", z: "group", stroke: "white", strokeWidth: 0.6, strokeOpacity: 0.6}),
+    Plot.line([
+      simplexVertices.v1, simplexVertices.v2, simplexVertices.v3, simplexVertices.v1
+    ], {stroke: "black", strokeWidth: 1.5}),
+    Plot.text(
+      [
+        {x: -0.03, y: -0.03, text: "p1"},
+        {x: 1.03, y: -0.03, text: "p2"},
+        {x: 0.5, y: Math.sqrt(3) / 2 + 0.05, text: "p3"}
+      ],
+      {x: "x", y: "y", text: "text", fontSize: 14}
+    )
   ]
 })
 ```
